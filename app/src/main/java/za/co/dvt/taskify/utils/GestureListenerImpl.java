@@ -22,9 +22,10 @@ public class GestureListenerImpl extends GestureDetector.SimpleOnGestureListener
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         Log.d("GestureListenerImpl", "onFling::Swipe detected");
         if(e2.getX() > e1.getX()) {
-            Log.d("GestureListenerImpl", "onFling::Left to write swipe, enabling add task layout");
+            Log.d("GestureListenerImpl", "onFling::Left to right swipe, enabling add task layout");
             mView.setVisibility(View.VISIBLE);
         }else if(e2.getX() < e1.getX()){
+            Log.d("GestureListenerImpl", "onFling::Right to left swipe, disabling add task layout");
             mView.setVisibility(View.GONE);
         }
         return super.onFling(e1, e2, velocityX, velocityY);
