@@ -1,5 +1,7 @@
 package za.co.dvt.taskify.persistence;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.List;
 
 import za.co.dvt.taskify.model.Task;
@@ -11,10 +13,9 @@ import za.co.dvt.taskify.utils.GenericException;
 
 public interface Database {
 
-    void createTask(Task pTask) throws GenericException;
-    void updateTask(Task pTask) throws GenericException;
-    void removeTask(String pTaskId) throws GenericException;
-    Task findTask(Task pTask) throws GenericException;
-    List<Task> findAllTasks() throws GenericException;
-    List<Task> findTasksByStatus(String pStatus) throws GenericException;
+    void createTask(Task pTask);
+    void updateTask(Task pTask);
+    void removeTask(String pTaskId);
+    Task findTask(Task pTask);
+    List<Task> findAllTasks();
 }

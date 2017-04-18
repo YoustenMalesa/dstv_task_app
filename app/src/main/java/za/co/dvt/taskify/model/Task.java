@@ -13,23 +13,20 @@ public class Task {
     private String taskId;
     private String title;
     private String shortDescription;
-    private String startTime;
-    private String endTime;
-    private String status;
-    private String priority;
+    private int isDone;
+    public static final int DONE = 1;
+    public static final int TO_DO = 0;
+    public static final int ALL = 2;
 
     public Task() {
 
     }
 
-    public Task(String taskId, String title, String shortDescription, String startTime, String endTime, String status, String priority) {
+    public Task(String taskId, String title, String shortDescription, int isDone) {
         this.taskId = taskId;
         this.title = title;
         this.shortDescription = shortDescription;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.status = status;
-        this.priority = priority;
+        this.isDone = isDone;
     }
 
     public String getTaskId() {
@@ -56,35 +53,11 @@ public class Task {
         this.shortDescription = shortDescription;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public int isDone() {
+        return isDone;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
+    public void setDone(int done) {
+        isDone = done;
     }
 }

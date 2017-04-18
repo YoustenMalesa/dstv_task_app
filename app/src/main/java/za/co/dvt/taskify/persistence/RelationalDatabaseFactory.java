@@ -3,11 +3,10 @@ package za.co.dvt.taskify.persistence;
 import android.content.Context;
 
 /**
- * Created by YMalesa on 2017/04/10.
+ * Created by YMalesa on 2017/04/12.
  */
 
-public class RealtimeDatabaseFactory extends DatabaseFactory {
-
+public class RelationalDatabaseFactory extends DatabaseFactory {
     @Override
     public Database getFireBaseDatabase() {
         return new FireBaseDatabase();
