@@ -39,7 +39,7 @@ public class Util {
     }
 
     public static AlertDialog buildDialog(Context pContext, String pMessage, String pTitle) {
-        final AlertDialog.Builder vBuilder = new AlertDialog.Builder(pContext);
+        AlertDialog.Builder vBuilder = new AlertDialog.Builder(pContext);
         return vBuilder.setMessage(pMessage)
                 .setCancelable(true).setPositiveButton("Got It!", new DialogInterface.OnClickListener() {
             @Override

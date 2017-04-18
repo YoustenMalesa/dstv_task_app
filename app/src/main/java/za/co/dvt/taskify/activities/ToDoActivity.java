@@ -1,5 +1,7 @@
 package za.co.dvt.taskify.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.GestureDetectorCompat;
@@ -117,14 +119,21 @@ public class ToDoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        String vMessage = "Instructions on how to use the app", vTtitle = "Taskify Instructions";
         int vItemId = item.getItemId();
-        //Util.buildDialog(getApplicationContext(), vMessage, vTtitle).show();
+
         if(vItemId == R.id.action_instructions) {
-            Toast.makeText(getApplicationContext(), String.valueOf(vItemId), Toast.LENGTH_LONG).show();
+            String vMessage = "", vTtitle = "Taskify Instructions";
+            StringBuilder vBuilder = new StringBuilder();
+
+            vBuilder.append("1. To add a task, swipe bottom of the screen from left to right,");
+            vBuilder.append(" Swipe from right to left when done adding. \n\n");
+            vBuilder.append("2. To delete a task, swipe list item from left to right. \n\n");
+            vBuilder.append("3. Click on the checkbox of a list item to indicate that it is done. \n");
+
+            vMessage = vBuilder.toString();
+            Util.buildDialog(ToDoActivity.this, vMessage, vTtitle).show();
         }else {
             filterTaskList();
-            //mListAdapter.getFilter().filter(String.valueOf(Task.ALL));
         }
 
         return super.onOptionsItemSelected(item);
