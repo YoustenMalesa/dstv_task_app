@@ -125,10 +125,10 @@ public class ToDoActivity extends AppCompatActivity {
             String vMessage = "", vTtitle = "Taskify Instructions";
             StringBuilder vBuilder = new StringBuilder();
 
-            vBuilder.append("1. To add a task, swipe bottom of the screen from left to right,");
-            vBuilder.append(" Swipe from right to left when done adding. \n\n");
-            vBuilder.append("2. To delete a task, swipe list item from left to right. \n\n");
-            vBuilder.append("3. Click on the checkbox of a list item to indicate that it is done. \n");
+            vBuilder.append("1. To add a task, swipe bottom of the screen from left to right,")
+            .append(" Swipe from right to left when done adding. \n\n")
+            .append("2. To delete a task, swipe list item from left to right. \n\n")
+            .append("3. Click on the checkbox of a list item to indicate that it is done. \n");
 
             vMessage = vBuilder.toString();
             Util.buildDialog(ToDoActivity.this, vMessage, vTtitle).show();
