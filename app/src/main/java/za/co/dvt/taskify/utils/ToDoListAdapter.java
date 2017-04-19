@@ -21,8 +21,8 @@ import za.co.dvt.taskify.persistence.RelationalDatabaseFactory;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<ToDoViewHolder> implements Filterable {
     private List<Task> mTasks = Collections.emptyList(), mFilteredList = Collections.emptyList();
-    private ProgressBar mTaskProgress;
-    private TextView mProgressPerc;
+    ProgressBar mTaskProgress;
+    TextView mProgressPerc;
     private Context mContext;
     private TaskListFilter mFilter;
     private View.OnClickListener mChckBoxClickListener;

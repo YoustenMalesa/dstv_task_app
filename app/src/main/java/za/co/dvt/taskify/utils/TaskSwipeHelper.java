@@ -41,5 +41,7 @@ public class TaskSwipeHelper extends ItemTouchHelper.SimpleCallback {
         vTasks.remove(vPosition);
         mAdapter.notifyItemRemoved(vPosition);
         mAdapter.notifyItemRangeChanged(vPosition, vTasks.size());
+        mAdapter.mTaskProgress.setProgress(Util.taskComplettionProgress(vTasks));
+        mAdapter.mProgressPerc.setText(Util.taskComplettionProgress(vTasks) + "%");
     }
 }
