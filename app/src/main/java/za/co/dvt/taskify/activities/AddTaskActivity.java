@@ -1,6 +1,5 @@
 package za.co.dvt.taskify.activities;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,7 @@ import za.co.dvt.taskify.R;
 import za.co.dvt.taskify.model.Task;
 import za.co.dvt.taskify.persistence.Database;
 import za.co.dvt.taskify.persistence.DatabaseFactory;
-import za.co.dvt.taskify.persistence.RealtimeDatabaseFactory;
+import za.co.dvt.taskify.persistence.RelationalDatabaseFactory;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -47,7 +46,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     return;
                 }
 
-                DatabaseFactory vDBFactory = RealtimeDatabaseFactory.getDatabaseFactory(DatabaseFactory.RELATIONAL_DATABASE);
+                DatabaseFactory vDBFactory = RelationalDatabaseFactory.getDatabaseFactory(DatabaseFactory.RELATIONAL_DATABASE);
                 final Database vSQLiteDb = vDBFactory.getSQLiteDatabase(getApplicationContext());
                 Task vTask = new Task();
 

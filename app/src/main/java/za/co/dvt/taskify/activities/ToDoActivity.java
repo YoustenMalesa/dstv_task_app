@@ -1,12 +1,8 @@
 package za.co.dvt.taskify.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,34 +10,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import za.co.dvt.taskify.R;
 import za.co.dvt.taskify.model.Task;
 import za.co.dvt.taskify.persistence.Database;
 import za.co.dvt.taskify.persistence.DatabaseFactory;
-import za.co.dvt.taskify.persistence.RealtimeDatabaseFactory;
-import za.co.dvt.taskify.utils.GestureListenerImpl;
+import za.co.dvt.taskify.persistence.RelationalDatabaseFactory;
 import za.co.dvt.taskify.utils.TaskSwipeHelper;
 import za.co.dvt.taskify.utils.ToDoListAdapter;
-import za.co.dvt.taskify.utils.Util;
 
 public class ToDoActivity extends AppCompatActivity {
 
@@ -50,9 +35,6 @@ public class ToDoActivity extends AppCompatActivity {
     private TextView mProgressPerc;
     private List<za.co.dvt.taskify.model.Task> mTasks = new ArrayList<>();
     private ToDoListAdapter mListAdapter;
-    private TextInputLayout mTitleError;
-    private TextInputLayout mDescriptionError;
-    private int mFilterConstraint = 0;
     public static final String TAG = "ToDoActivity";
     private DatabaseFactory vDBFactory;
     private Database vSQLiteDb;
@@ -63,12 +45,11 @@ public class ToDoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do_main);
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
-        //mainToolbar.setNavigationIcon(R.drawable.ic_sort_black_24dp);
         getSupportActionBar().setTitle(R.string.app_title);
 
         initComponents();
 
-        vDBFactory = RealtimeDatabaseFactory.getDatabaseFactory(DatabaseFactory.RELATIONAL_DATABASE);
+        vDBFactory = RelationalDatabaseFactory.getDatabaseFactory(DatabaseFactory.RELATIONAL_DATABASE);
         vSQLiteDb = vDBFactory.getSQLiteDatabase(ToDoActivity.this);
         mTasks = vSQLiteDb.findAllTasks();
 
@@ -96,11 +77,11 @@ public class ToDoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int vItemId = item.getItemId();
 
-        if(vItemId == R.id.action_view_all) {
+        if (vItemId == R.id.action_view_all) {
             filterTaskList(Task.ALL);
-        }else if(vItemId == R.id.action_view_done){
+        } else if (vItemId == R.id.action_view_done) {
             filterTaskList(Task.DONE);
-        }else {
+        } else {
             filterTaskList(Task.TO_DO);
         }
 
@@ -122,12 +103,9 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
-        rcToDOItems    = (RecyclerView)findViewById(R.id.rc_to_do_list);
-        mTaskProgress  = (ProgressBar)findViewById(R.id.task_progress_bar);
-        mProgressPerc  = (TextView)findViewById(R.id.txt_progress);
-
-        mTitleError = (TextInputLayout) findViewById(R.id.add_item_title_input_layout);
-        mDescriptionError = (TextInputLayout) findViewById(R.id.add_item_description_input_layout);
+        rcToDOItems = (RecyclerView) findViewById(R.id.rc_to_do_list);
+        mTaskProgress = (ProgressBar) findViewById(R.id.task_progress_bar);
+        mProgressPerc = (TextView) findViewById(R.id.txt_progress);
     }
 
     @Override
