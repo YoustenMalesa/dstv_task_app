@@ -55,6 +55,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         contentValues.put(TASK_DONE, pTask.isDone());
 
         mSQLiteDB.insert(TABLE_NAME, null, contentValues);
+        mSQLiteDB.close();
     }
 
     public List<Task> findAllTasks() {

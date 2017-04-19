@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="za.co.dvt.taskify.activities.AddTaskActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_item_title_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000"
+        android:visibility="visible"
+        app:errorEnabled="true"
+        android:layout_marginTop="51dp"
+        android:layout_below="@+id/main_toolbar"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/edt_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000"
+            android:hint="@string/add_item_placeholder"
+            android:maxLines="1"
+            android:layout_marginTop="28dp"
+            android:layout_alignParentStart="true" />
+        </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_item_description_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000"
+        android:visibility="visible"
+        app:errorEnabled="true"
+        android:layout_below="@+id/add_item_title_input_layout"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp">
+
+        <EditText
+            android:id="@+id/edt_task_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/edt_item_title"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#000"
+            android:hint="@string/add_item_description"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_add_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:text="@string/action_add"
+        android:layout_below="@+id/add_item_description_input_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+
+</RelativeLayout>

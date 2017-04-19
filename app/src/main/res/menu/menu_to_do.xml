@@ -3,8 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="za.co.dvt.taskify.activities.MainActivity">
     <item
-        android:id="@+id/action_instructions"
+        android:id="@+id/action_view_all"
         android:orderInCategory="100"
-        android:title="@string/action_instructions"
+        android:title="@string/action_view_all_items"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_view_done"
+        android:orderInCategory="100"
+        android:title="@string/view_done"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_view_to_do"
+        android:orderInCategory="100"
+        android:title="@string/view_to_do"
         app:showAsAction="never" />
 </menu>

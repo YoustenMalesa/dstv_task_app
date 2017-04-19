@@ -19,5 +19,4 @@
 
     <include layout="@layout/activity_to_do" />
 
-
 </LinearLayout>

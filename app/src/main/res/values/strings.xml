@@ -6,22 +6,16 @@
     <string name="action_instructions">Instructions</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_to_do">ToDoActivity</string>
-
-    <string-array name="priorities">
-        <item>Critical</item>
-        <item>High</item>
-        <item>Medium</item>
-        <item>Low</item>
-    </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="to_do_progress_title">Work Things to Complete</string>
     <string name="todo_items_heading">TO DO</string>
     <string name="add_item_description">Item Description</string>
-    <string name="action_view_all_items">View all Items</string>
+    <string name="action_view_all_items">View All</string>
     <string name="action_complete_items">View completed items</string>
     <string name="app_title">To Do List</string>
     <string name="action_add">Add</string>
     <string name="add_item_placeholder">Item Title</string>
+    <string name="add_task_title">Add Task</string>
+    <string name="view_done">View Done</string>
+    <string name="view_to_do">View To-Do</string>
 
 </resources>

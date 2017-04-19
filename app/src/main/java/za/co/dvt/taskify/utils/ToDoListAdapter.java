@@ -98,6 +98,14 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoLi
         notifyDataSetChanged();
 
     }
+
+    public void updateTask() {
+        DatabaseFactory vDBFactory  = RealtimeDatabaseFactory.getDatabaseFactory(DatabaseFactory.REAL_TIME_DATABASE);
+        Database vSQLiteDB = vDBFactory.getSQLiteDatabase(mContext);
+
+        mTasks = vSQLiteDB.findAllTasks();
+        notifyDataSetChanged();
+    }
     public List<Task> getTasks(){return mTasks;}
 
     @Override
