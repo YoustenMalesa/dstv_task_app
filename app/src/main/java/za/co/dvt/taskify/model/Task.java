@@ -2,12 +2,6 @@ package za.co.dvt.taskify.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.Date;
-
-/**
- * Created by YMalesa on 2017/04/10.
- */
-
 @IgnoreExtraProperties
 public class Task {
     private String taskId;

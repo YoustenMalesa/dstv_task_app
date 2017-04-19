@@ -16,10 +16,6 @@ import za.co.dvt.taskify.model.Task;
 
 public class Util {
 
-    Date getDateDifference(Date pStartDate, Date pEndDate) {
-        return null;
-    }
-
     public static int taskComplettionProgress(List<Task> pTasks) {
         int vTotalTasks = pTasks.size();
         int vDoneTasks = 0, vPercentage = 0;
@@ -36,16 +32,5 @@ public class Util {
         vPercentage = vDoneTasks * 100 / vTotalTasks;
 
         return vPercentage;
-    }
-
-    public static AlertDialog buildDialog(Context pContext, String pMessage, String pTitle) {
-        AlertDialog.Builder vBuilder = new AlertDialog.Builder(pContext);
-        return vBuilder.setMessage(pMessage)
-                .setCancelable(true).setPositiveButton("Got It!", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        }).setTitle(pTitle).create();
     }
 }

@@ -2,7 +2,6 @@ package za.co.dvt.taskify.activities;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,8 +13,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,9 @@ import za.co.dvt.taskify.persistence.DatabaseFactory;
 import za.co.dvt.taskify.persistence.RelationalDatabaseFactory;
 import za.co.dvt.taskify.utils.TaskSwipeHelper;
 import za.co.dvt.taskify.utils.ToDoListAdapter;
+import za.co.dvt.taskify.utils.Util;
 
-public class ToDoActivity extends AppCompatActivity {
+public class ToDoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView rcToDOItems;
     private ProgressBar mTaskProgress;
@@ -96,7 +98,7 @@ public class ToDoActivity extends AppCompatActivity {
         LinearLayoutManager vLayoutManager = new LinearLayoutManager(getApplicationContext());
         vLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        mListAdapter = new ToDoListAdapter(getApplicationContext(), mTasks, mProgressPerc, mTaskProgress);
+        mListAdapter = new ToDoListAdapter(getApplicationContext(), mTasks, mProgressPerc, mTaskProgress, this);
         rcToDOItems.setAdapter(mListAdapter);
         rcToDOItems.setLayoutManager(vLayoutManager);
         rcToDOItems.setItemAnimator(new DefaultItemAnimator());
@@ -111,12 +113,30 @@ public class ToDoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mListAdapter.updateTask();
+        mTasks = vSQLiteDb.findAllTasks();
+        mListAdapter.setTasks(mTasks);
+        mListAdapter.notifyDataSetChanged();
     }
 
     public void initSwipeListener() {
-        ItemTouchHelper.Callback vSwipeCallback = new TaskSwipeHelper(mListAdapter);
+        ItemTouchHelper.Callback vSwipeCallback = new TaskSwipeHelper(mListAdapter, getApplicationContext());
         ItemTouchHelper vHelper = new ItemTouchHelper(vSwipeCallback);
         vHelper.attachToRecyclerView(rcToDOItems);
     }
+
+    @Override
+    public void onClick(View v) {
+        CheckBox vChckDone = (CheckBox) v;
+        RecyclerView.ViewHolder vHolder = (RecyclerView.ViewHolder) vChckDone.getTag();
+        Task vTask = mTasks.get(vHolder.getAdapterPosition());
+        int isDone = vChckDone.isChecked() ? Task.DONE : Task.TO_DO;
+
+        vTask.setDone(isDone);
+        vSQLiteDb.updateTask(vTask);
+
+        mTasks = vSQLiteDb.findAllTasks();
+        mTaskProgress.setProgress(Util.taskComplettionProgress(mTasks));
+        mProgressPerc.setText(Util.taskComplettionProgress(mTasks) + "%");
+    }
+
 }

@@ -4,14 +4,9 @@ import android.util.Log;
 import android.widget.Filter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import za.co.dvt.taskify.model.*;
-
-/**
- * Created by YMalesa on 2017/04/17.
- */
+import za.co.dvt.taskify.model.Task;
 
 public class TaskListFilter extends Filter {
     private ToDoListAdapter mAdapter;
@@ -33,14 +28,14 @@ public class TaskListFilter extends Filter {
             Log.d("TaskListFilter", "performFiltering::Constraint: " + vConstraint);
             List<Task> vFilteredList = new ArrayList<>();
 
-            if(vConstraint == Task.ALL) {
+            if (vConstraint == Task.ALL) {
                 vResults.count = mTasks.size();
                 vResults.values = mTasks;
                 return vResults;
             }
 
             for (int x = 0; x < mTasks.size(); x++) {
-                if (mTasks.get(x).isDone()== vConstraint) {
+                if (mTasks.get(x).isDone() == vConstraint) {
                     vFilteredList.add(mTasks.get(x));
                 }
             }
@@ -58,7 +53,7 @@ public class TaskListFilter extends Filter {
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
-        mAdapter.mTasks = (List<Task>) results.values;
+        mAdapter.setTasks((List<Task>) results.values);
         Log.d("TaskListFilter", "publishResults::Filtered List: " + mTasks.size());
         mAdapter.notifyDataSetChanged();
     }
