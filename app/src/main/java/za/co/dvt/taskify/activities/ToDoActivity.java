@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +118,7 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initSwipeListener() {
-        ItemTouchHelper.Callback vSwipeCallback = new TaskSwipeHelper(mListAdapter, getApplicationContext());
+        ItemTouchHelper.Callback vSwipeCallback = new TaskSwipeHelper(mListAdapter, ToDoActivity.this);
         ItemTouchHelper vHelper = new ItemTouchHelper(vSwipeCallback);
         vHelper.attachToRecyclerView(rcToDOItems);
     }

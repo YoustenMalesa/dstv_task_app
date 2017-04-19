@@ -3,6 +3,8 @@ package za.co.dvt.taskify.utils;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,15 +34,12 @@ public class TaskSwipeHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         DatabaseFactory vDBFactory = RelationalDatabaseFactory.getDatabaseFactory(DatabaseFactory.RELATIONAL_DATABASE);
-        final Database vSQLiteDb = vDBFactory.getSQLiteDatabase(mContext);
+        Database vSQLiteDB = vDBFactory.getSQLiteDatabase(mContext);
+        int vPosition = viewHolder.getAdapterPosition();
         List<Task> vTasks = mAdapter.getTasks();
-        int vTaskPosition = viewHolder.getAdapterPosition();
-        vSQLiteDb.removeTask(String.valueOf(vTasks.get(vTaskPosition)));
-
-        vTasks.remove(vTaskPosition);
-
-        mAdapter.setTasks(vTasks);
-        mAdapter.notifyItemRemoved(vTaskPosition);
-        mAdapter.notifyDataSetChanged();
+        vSQLiteDB.removeTask(vTasks.get(vPosition).getTaskId());
+        vTasks.remove(vPosition);
+        mAdapter.notifyItemRemoved(vPosition);
+        mAdapter.notifyItemRangeChanged(vPosition, vTasks.size());
     }
 }

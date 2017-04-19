@@ -12,6 +12,7 @@ import za.co.dvt.taskify.model.Task;
 import za.co.dvt.taskify.persistence.Database;
 import za.co.dvt.taskify.persistence.DatabaseFactory;
 import za.co.dvt.taskify.persistence.RelationalDatabaseFactory;
+import za.co.dvt.taskify.utils.Util;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -35,12 +36,12 @@ public class AddTaskActivity extends AppCompatActivity {
                 String vTitle = edtTitle.getText().toString();
                 String vDescription = edtDescription.getText().toString();
 
-                if (!validateInput(vTitle)) {
+                if (!Util.validateInput(vTitle)) {
                     edtTitle.setError("Title is required.");
                     return;
                 }
 
-                if (!validateInput(vDescription)) {
+                if (!Util.validateInput(vDescription)) {
                     edtDescription.setError("Description is required");
                     return;
                 }
@@ -59,10 +60,6 @@ public class AddTaskActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private boolean validateInput(String pValue) {
-        return pValue == null || pValue.isEmpty() ? false : true;
     }
 
     private void initComponents() {

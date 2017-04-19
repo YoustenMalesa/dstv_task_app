@@ -33,4 +33,8 @@ public class Util {
 
         return vPercentage;
     }
+
+    public static boolean validateInput(String pValue) {
+        return pValue == null || pValue.isEmpty() ? false : true;
+    }
 }
